@@ -15,4 +15,6 @@ exec { "enable_plugins":
 	command => "/usr/lib/rabbitmq/bin/rabbitmq-plugins enable rabbitmq_management",
 	unless => "grep rabbitmq_management /etc/rabbitmq/enabled_plugins",
 	notify => Service["rabbitmq-server"], # make sure the server will be restarted
+	require => Package["rabbitmq-server"],
+	environment => "HOME=/root",
 }
