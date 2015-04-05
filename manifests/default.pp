@@ -18,3 +18,13 @@ exec { "enable_plugins":
 	require => Package["rabbitmq-server"],
 	environment => "HOME=/root",
 }
+
+# mongodb
+package { "mongodb-server":
+	ensure => "installed",
+}
+
+service { "mongodb":
+	ensure => "running",
+	require => Package["mongodb-server"],
+}
