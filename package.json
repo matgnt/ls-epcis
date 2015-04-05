@@ -1,0 +1,16 @@
+{
+  "name": "LazyEPCIS",
+  "version": "0.0.1",
+  "description": "",
+  "main": "xmltest.js",
+  "dependencies": {
+    "xml2js": "^0.4.6",
+    "xml2json": "^0.6.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Matthias Günther",
+  "license": "MIT"
+}
