@@ -28,6 +28,8 @@ mongodb::db { 'testdb':
   user     => 'testuser',
   password => 'testpassword',
 }
+# mongodb client
+class {'::mongodb::client':}
 
 # nodejs
 package { "nodejs":
