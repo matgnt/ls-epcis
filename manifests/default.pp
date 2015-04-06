@@ -28,3 +28,8 @@ service { "mongodb":
 	ensure => "running",
 	require => Package["mongodb-server"],
 }
+
+# nodejs
+package { "nodejs":
+	ensure => "installed",
+}
