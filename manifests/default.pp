@@ -20,13 +20,13 @@ exec { "enable_plugins":
 }
 
 # mongodb
-package { "mongodb-server":
-	ensure => "installed",
+class {'::mongodb::server':
+  auth => true,
+  bind_ip => [],
 }
-
-service { "mongodb":
-	ensure => "running",
-	require => Package["mongodb-server"],
+mongodb::db { 'testdb':
+  user     => 'testuser',
+  password => 'testpassword',
 }
 
 # nodejs
