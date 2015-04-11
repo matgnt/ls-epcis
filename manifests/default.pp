@@ -21,12 +21,8 @@ exec { "enable_plugins":
 
 # mongodb
 class {'::mongodb::server':
-  auth => true,
+  noauth => true,
   bind_ip => [],
-}
-mongodb::db { 'testdb':
-  user     => 'testuser',
-  password => 'testpassword',
 }
 # mongodb client
 class {'::mongodb::client':}
