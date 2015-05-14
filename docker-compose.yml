@@ -1,6 +1,7 @@
 
 rabbitmqmaster:
-  image: tutum/rabbitmq
+  #image: tutum/rabbitmq
+  build: ./tutum-docker-rabbitmq
   environment:
     - RABBITMQ_PASS=admin
   ports:
