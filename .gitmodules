@@ -1,0 +1,3 @@
+[submodule "tutum-docker-rabbitmq"]
+	path = tutum-docker-rabbitmq
+	url = ../tutum-docker-rabbitmq.git
