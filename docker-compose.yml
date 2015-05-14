@@ -1,0 +1,14 @@
+
+rabbitmqmaster:
+  image: tutum/rabbitmq
+  environment:
+    - RABBITMQ_PASS=admin
+  ports:
+    - "15672:15672"
+
+mongodb:
+  image: mongo
+  ports:
+    - "27017:27017"
+
+
