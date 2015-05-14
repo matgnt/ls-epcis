@@ -1,6 +1,5 @@
 
 var amqp = require('amqp');
-var fs = require('fs');
 var xml2js = require('xml2js');
 
 // options to parse the EPCIS xml structure into JS
@@ -18,8 +17,9 @@ var parseEPCIS = function (data) {
             console.log(err);
         } else {
             var body = result['epcis:EPCISDocument']['EPCISBody']['EventList']['ObjectEvent'];
-            console.log(JSON.stringify(body, null, 4));
-            resend(body);
+            var msg = JSON.stringify(body, null, 4);
+            console.log(msg);
+            resend(msg);
         }
         console.log('Done');
     });
