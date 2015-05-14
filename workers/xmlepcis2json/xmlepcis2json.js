@@ -1,6 +1,7 @@
 
 var amqp = require('amqp');
 var xml2js = require('xml2js');
+var assert = require('assert');
 
 // options to parse the EPCIS xml structure into JS
 var parserOptions = {
@@ -13,15 +14,29 @@ var parseEPCIS = function (data) {
     var parser = new xml2js.Parser(parserOptions);
 
     parser.parseString(data, function (err, result) {
-        if (err) {
-            console.log(err);
-        } else {
-            var body = result['epcis:EPCISDocument']['EPCISBody']['EventList']['ObjectEvent'];
-            var msg = JSON.stringify(body, null, 4);
-            console.log(msg);
-            resend(msg);
+        assert.equal(null, err, 'Parsing XML data failed!');
+        
+        // we only care for events
+        var event = result['epcis:EPCISDocument']['EPCISBody']['EventList']['ObjectEvent'];
+        assert.notEqual(null, event, 'No event found');
+
+        // now let's prepare the message how it should look like in the JSON world
+        if(event.epcList.epc) {
+            event.epc = event.epcList.epc;
+            event.epcList = undefined;
         }
-        console.log('Done');
+        if(event.readPoint.id)
+            event.readPoint = event.readPoint.id;
+        if(event.bizLocation.id)
+            event.bizLocation = event.bizLocation.id;
+        if(event.bizTransactionList.bizTransaction) {
+            event.bizTransaction = event.bizTransactionList.bizTransaction;
+            event.bizTransactionList = undefined;
+        }
+        
+        var msg = JSON.stringify(event, null, 4);
+        console.log(msg);
+        resend(msg);
     });
 
 };
