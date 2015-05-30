@@ -2,3 +2,5 @@ node_modules/
 *.swp
 *.js
 *.map
+.DS_Store
+.settings/
