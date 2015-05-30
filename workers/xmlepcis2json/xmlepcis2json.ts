@@ -29,7 +29,7 @@ connection.on('ready', function () {
         var parser:epcisparser.EPCIS.EpcisParser = new epcisparser.EPCIS.EpcisParser();
         queue.subscribe(function (msg) {
             var message = msg.data.toString('utf-8');
-            console.log(" [x] Received %s", message);
+            //console.log(" [x] Received %s", message);
 			
             // convert from EPCIS xml to json
 			parser.parse(message, function(err:any, result:epcisevents.EPCIS.Events) {
