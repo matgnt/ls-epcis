@@ -40,6 +40,17 @@ Currently the plan is to use the following key components:
 We'll still handle all the XML (EPCIS standardized) messages, but with more and more web applications we want to create around the system, we think JSON is a better format.
 Additionally, we plan to directly send messages from the PLC level and MQTT in combination with JSON is an easier to implement protocol there as well.
 
+# Start it
+```
+boot2docker up
+source ./dockerrc # check that the ip in the dockerrc file mtches your local settings (output of the previous command...)
+docker-compose up
+```
+
+RabbitMQ is accessible through the web interface (admin/admin) on http://192.168.59.103:15672
+
+You can now send EPCIS (XML) messages to "amq.topic" "input.xml" and it will be forwarded to "input.json" after converting it.
+
 # Infrastructure
 It's still open whether we should use vagrant or docker-compose...
 Puppet could be used to deploy, or we just use ready to go docker containers...
@@ -47,4 +58,11 @@ Puppet could be used to deploy, or we just use ready to go docker containers...
 ### Puppet
 puppet module install --modulepath=./puppet_modules puppetlabs-mongodb
 
+# Docker help
+If you encounter an error you can check the image. Just export it and open the *.tar file
+```
+docker ps -a	# lists all containers
+docker export -o tmp.tar CONTAINER_ID
+```
+The CONTAINER_ID is not the IMAGE_ID!
 
