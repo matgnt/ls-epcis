@@ -1,2 +1,4 @@
 node_modules/
 *.swp
+*.js
+*.map
