@@ -40,9 +40,6 @@ Currently the plan is to use the following key components:
 We'll still handle all the XML (EPCIS standardized) messages, but with more and more web applications we want to create around the system, we think JSON is a better format.
 Additionally, we plan to directly send messages from the PLC level and MQTT in combination with JSON is an easier to implement protocol there as well.
 
-## EPCIS Specification
-Please checkout the [SpecificationNotes](Documentation/SpecificationNotes.md)
-
 # Infrastructure
 It's still open whether we should use vagrant or docker-compose...
 Puppet could be used to deploy, or we just use ready to go docker containers...
