@@ -44,7 +44,7 @@ Additionally, we plan to directly send messages from the PLC level and MQTT in c
 Before you can start it, you have to laod the submodules:
 ```
 git submodule init
-git sumodule update
+git submodule update
 ```
 This loads the modified RabbitMQ Dockerfile, which includes STOMP and MQTT plugins enabled.
 
