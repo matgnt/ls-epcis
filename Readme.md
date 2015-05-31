@@ -42,14 +42,18 @@ Additionally, we plan to directly send messages from the PLC level and MQTT in c
 
 # Start it
 ```
-boot2docker up
-source ./dockerrc # check that the ip in the dockerrc file mtches your local settings (output of the previous command...)
-docker-compose up
+boot2docker up			# Only on Mac or Windows
+source ./dockerrc		# To communicate with boot2docker. Check that the ip in the dockerrc file mtches your local settings (output of the previous command...)
+docker-compose build	# not needed everytime, but to initially build our images
+docker-compose up		# starts the whole thing
 ```
 
 RabbitMQ is accessible through the web interface (admin/admin) on http://192.168.59.103:15672
 
 You can now send EPCIS (XML) messages to "amq.topic" "input.xml" and it will be forwarded to "input.json" after converting it.
+
+# Docker at scale
+*Docker Swarm* currently doesn't support communication between the nodes. As soon as this works, we can start any amount of workers to cope with increasing load.
 
 # Docker help
 If you encounter an error you can check the image. Just export it and open the *.tar file
