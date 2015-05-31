@@ -41,11 +41,19 @@ We'll still handle all the XML (EPCIS standardized) messages, but with more and 
 Additionally, we plan to directly send messages from the PLC level and MQTT in combination with JSON is an easier to implement protocol there as well.
 
 # Start it
+Before you can start it, you have to laod the submodules:
+```
+git submodule init
+git sumodule update
+```
+This loads the modified RabbitMQ Dockerfile, which includes STOMP and MQTT plugins enabled.
+
+Now you can start the services:
 ```
 boot2docker up			# Only on Mac or Windows
-source ./dockerrc		# To communicate with boot2docker. Check that the ip in the dockerrc file mtches your local settings (output of the previous command...)
-docker-compose build	# not needed everytime, but to initially build our images
-docker-compose up		# starts the whole thing
+source ./dockerrc		# To communicate with boot2docker. Check that the ip in the ./dockerrc file matches your local settings (output of the previous command...)
+docker-compose build	# Not needed everytime, but to initially build the docker images
+docker-compose up		# Start the whole thing...
 ```
 
 RabbitMQ is accessible through the web interface (admin/admin) on http://192.168.59.103:15672
