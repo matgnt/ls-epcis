@@ -13,6 +13,11 @@ mongodb:
   ports:
     - "27017:27017"
 
+storageworker:
+  build: ./workers/storageworker/
+  links:
+    - rabbitmqmaster
+
 # this is a worker to receive EPCIS XML events with routing key "input.xml"
 # it converts it to JS and sends it to routing key "input.json"
 xml2jsonworker:
