@@ -45,9 +45,10 @@ connection.on('ready', function () {
             //console.log(" [x] Received %s", message);
 			
             var jsonObj = JSON.parse(message);
-            var aggregationEvents:Array<any> = jsonObj['aggregationEvents'];
-            if(aggregationEvents) {
-                aggregationEvents.forEach(function (element) {
+
+            var events = concatEvents(jsonObj);
+            if(events) {
+                events.forEach(function (element) {
                     createDBitem(element);
                 });
             }
@@ -55,6 +56,25 @@ connection.on('ready', function () {
     });
 });
 
+// just concat all events that we currently support
+function concatEvents(obj:any): Array<any> {
+    var events:Array<any> = new Array<any>();
+
+    var eventNames:Array<string> = ['objectEvents', 'aggregationEvents', 'transactionEvents'];
+
+    eventNames.forEach(function (eventName) {
+        try {
+            var tmpEvents:Array<any> = obj[eventName];
+            if(tmpEvents) {
+                events = events.concat(tmpEvents);
+            }
+        } catch (err) {
+            console.log('Could not add events: ' + eventName + ' Error: ' + err);
+        }
+    });
+
+    return events;
+}
 
 connection.on('error', function (err) {
 
