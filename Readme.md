@@ -1,5 +1,5 @@
 # Keywords
-EPCIS, RFID, IoT, Industrie 4.0, Industry 4.0, Smart Factory
+EPCIS, RFID, IoT, Industrie 4.0, Industry 4.0, Smart Factory, JSON-LD
 
 # Introduction
 This is supposed to become a lightweight, but very scalable EPCIS repository. EPCIS stands for Electronic Product Code Information Services and is a standard interface to share location and status information of any kind of product you might have.
@@ -39,6 +39,16 @@ Currently the plan is to use the following key components:
 ### Why JSON instead of XML?
 We'll still handle all the XML (EPCIS standardized) messages, but with more and more web applications we want to create around the system, we think JSON is a better format.
 Additionally, we plan to directly send messages from the PLC level and MQTT in combination with JSON is an easier to implement protocol there as well.
+
+### JSON-LD
+The idea is to use linked data with JSON. You can find more at:
+http://json-ld.org/
+
+Unfortunately there is no schema for EPCIS yet. We probably have to define the types (according to the XML specification).
+
+A list of exsiting types can be found at:
+http://schema.org/docs/full.html
+
 
 # Start it
 Before you can start it, you have to laod the submodules:
