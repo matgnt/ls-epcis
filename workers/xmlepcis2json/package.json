@@ -11,7 +11,7 @@
   "dependencies": {
     "amqp": "^0.2.4",
     "assert": "^1.3.0",
-    "epcis-js": "git+https://github.com/matgnt/epcis-js.git",
+    "epcis-js": "../../epcis-js/",
     "xml2js": "^0.4.9"
   },
   "devDependencies": {
