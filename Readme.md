@@ -81,3 +81,28 @@ docker export -o tmp.tar CONTAINER_ID
 ```
 The CONTAINER_ID is not the IMAGE_ID!
 
+## Build and debug Docker images
+When you bild an image, tag it! That you can run it with the tag name. Otherwise, it's a unique ID.
+```
+docker build --tag=epcis_xml2jsonworker --no-cache=true .
+```
+This makes sure no existing cache is being used. You can now find the newly built image with:
+```
+bash-3.2$ docker images | grep -i epcis
+epcis_xml2jsonworker   latest              a39ac43305aa        5 minutes ago       354.4 MB
+epcis_storageworker    latest              721ad801e805        16 minutes ago      308.6 MB
+epcis_rabbitmqmaster   latest              2215db426a5c        13 days ago         227.2 MB
+```
+Since the image has its own entrypoint, you can run it with:
+```
+docker run epcis_xml2jsonworker
+```
+If you want to log into this image, you can do this while it's already running with:
+```
+bash-3.2$ docker ps
+CONTAINER ID        IMAGE                         COMMAND                CREATED             STATUS              PORTS               NAMES
+38c9609f960d        epcis_xml2jsonworker:latest   "/nodejs/bin/npm sta   4 seconds ago       Up 4 seconds                            serene_turing
+
+docker exec -i -t 38c9609f960d /bin/bash 
+```
+Where you have to replace the *CONTAINER ID* that you've got from the *ps* command!
