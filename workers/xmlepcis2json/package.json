@@ -14,6 +14,10 @@
     "epcis-js": "git+https://github.com/matgnt/epcis-js.git",
     "xml2js": "^0.4.9"
   },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-ts": "^4.1.0"
+  },
   "files": [
     "xmlepcis2json.js"
   ]
