@@ -1,13 +1,12 @@
 FROM google/nodejs
 
 WORKDIR /app
-ADD package.json /app/
-RUN npm install -g typescript && npm install && \
-	((find . -name "*.ts" | xargs tsc --module commonjs) || true)
+COPY package.json /app/
+RUN npm install -g typescript && npm install --production
 
-# add it at the end because this is the file that changes most often
-# the earlier parts are more or less static
-ADD *.js /app/
+# les  static parts
+COPY *.ts /app/
+RUN (find . -name "*.ts" -not -path "./node_modules/*" | xargs tsc --module commonjs) || true
 
 CMD []
 ENTRYPOINT ["/nodejs/bin/npm", "start"]
