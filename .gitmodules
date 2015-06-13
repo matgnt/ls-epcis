@@ -1,3 +1,6 @@
 [submodule "tutum-docker-rabbitmq"]
 	path = tutum-docker-rabbitmq
 	url = ../tutum-docker-rabbitmq.git
+[submodule "epcis-js"]
+	path = epcis-js
+	url = ../epcis-js.git
