@@ -25,14 +25,14 @@ connection.on('ready', function() {
 	while (true) {
 		sleep.sleep(3);
 		var event = new epcis.EPCIS.AggregationEvent();
-		var dt = new Date().toISOString();
+		var dt = new Date();
 		event.eventTime = dt;
 		// TODO: add more meaningful properties
 		
 		// send the event
-		var msg = JSON.stringify(event, null, 4);
+		//var msg = JSON.stringify(event, null, 4);
 		console.log('Sending msg...');
-		this.publish('input.json', msg);
+		this.publish('input.json', event);
 	}	
 		
 	});
