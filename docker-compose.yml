@@ -24,3 +24,8 @@ xml2jsonworker:
   build: ./workers/xmlepcis2json/
   links:
     - rabbitmqmaster
+
+eventgenerator:
+  build: ./workers/dummyeventworker/
+  links:
+    - rabbitmqmaster
