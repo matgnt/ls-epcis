@@ -1,0 +1,23 @@
+{
+  "name": "epcis",
+  "version": "0.1.0",
+  "description": "EPCIS, RFID, IoT, Industrie 4.0, Industry 4.0, Smart Factory, JSON-LD",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matgnt/ls-epcis.git"
+  },
+  "author": "Matthias Günther",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/matgnt/ls-epcis/issues"
+  },
+  "homepage": "https://github.com/matgnt/ls-epcis#readme",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-ts": "^4.2.0-beta.1"
+  }
+}
