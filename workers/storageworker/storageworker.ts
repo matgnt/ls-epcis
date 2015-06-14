@@ -3,6 +3,7 @@ import amqp = require('amqp');
 import mongodb = require('mongodb');
 import assert = require('assert');
 import sleep = require('sleep');
+import ep = require('./node_modules/epcis-js/lib/jsonparser');
 
 // sleep to wait some time to get the other services startet.
 // TODO: Check until the service port is available
@@ -42,12 +43,11 @@ connection.on('ready', function () {
 
         queue.subscribe(function (msg) {
             var message = msg.data.toString('utf-8');
-            //console.log(" [x] Received %s", message);
-			
-            var jsonObj = JSON.parse(message);
 
-            if(isEvent(jsonObj)) {
-                createDBitem(jsonObj);
+            var event = ep.EPCIS.EpcisJsonParser.parseJson(message);
+            createDBitem(event);
+
+            /*
             } else {
                 var events = concatEvents(jsonObj);
                 if(events) {
@@ -56,20 +56,11 @@ connection.on('ready', function () {
                     });
                 }
             }
+            */
         });
     });
 });
 
-// just check whether the given object is a valid event object already
-function isEvent(obj:any): boolean {
-    var allowedTypes:Array<string> = ['ObjectEvent', 'AggregationEvent', 'TransactionEvent'];
-    var type = obj['type'];
-    if(allowedTypes.indexOf(type) != -1) {
-        // allowed type
-        return true;
-    }
-    return false;
-}
 
 // just concat all events that we currently support
 function concatEvents(obj:any): Array<any> {
