@@ -1,0 +1,16 @@
+{
+  "name": "dummyeventworker",
+  "version": "1.0.0",
+  "description": "Create dummy events and add it to the queue",
+  "main": "eventgenerator.js",
+  "scripts": {
+    "start": "node eventgenerator.js"
+  },
+  "author": "Matthias Günther",
+  "license": "MIT",
+  "dependencies": {
+    "amqp": "^0.2.4",
+    "sleep": "^2.0.0",
+    "epcis-js": "git+https://github.com/matgnt/epcis-js.git"
+  }
+}
