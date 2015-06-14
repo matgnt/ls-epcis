@@ -71,7 +71,18 @@ RabbitMQ is accessible through the web interface (admin/admin) on http://192.168
 You can now send EPCIS (XML) messages to "amq.topic" "input.xml" and it will be forwarded to "input.json" after converting it.
 
 # Docker at scale
-*Docker Swarm* currently doesn't support communication between the nodes. As soon as this works, we can start any amount of workers to cope with increasing load.
+You can easily scale the system with e.g. starting more dummy event generators:
+```
+docker-compose scale eventgenerator=5
+```
+This just generates more events, but you can also start new storagworkers to cope with teh new load:
+```
+docker-compose scale storageworker=5
+```
+In the RabbitMQ web interface you can now see 5 connections for the input.json queue.
+
+And that's the big adavantage of this system. It scales without any additional effort. Just add more resources.
+
 
 # Docker help
 If you encounter an error you can check the image. Just export it and open the *.tar file
