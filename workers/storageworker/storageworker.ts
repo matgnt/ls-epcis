@@ -46,15 +46,30 @@ connection.on('ready', function () {
 			
             var jsonObj = JSON.parse(message);
 
-            var events = concatEvents(jsonObj);
-            if(events) {
-                events.forEach(function (element) {
-                    createDBitem(element);
-                });
+            if(isEvent(jsonObj)) {
+                createDBitem(jsonObj);
+            } else {
+                var events = concatEvents(jsonObj);
+                if(events) {
+                    events.forEach(function (element) {
+                        createDBitem(element);
+                    });
+                }
             }
         });
     });
 });
+
+// just check whether the given object is a valid event object already
+function isEvent(obj:any): boolean {
+    var allowedTypes:Array<string> = ['ObjectEvent', 'AggregationEvent', 'TransactionEvent'];
+    var type = obj['type'];
+    if(allowedTypes.indexOf(type) != -1) {
+        // allowed type
+        return true;
+    }
+    return false;
+}
 
 // just concat all events that we currently support
 function concatEvents(obj:any): Array<any> {
