@@ -42,9 +42,9 @@ connection.on('ready', function () {
         console.log(' [*] Waiting for messages. To exit press CTRL+C');
 
         queue.subscribe(function (msg) {
-            var message = msg.data.toString('utf-8');
+            //var message = msg.data.toString('utf-8');
 
-            var event = ep.EPCIS.EpcisJsonParser.parseJson(message);
+            var event = ep.EPCIS.EpcisJsonParser.parseObj(msg);
             createDBitem(event);
 
             /*
